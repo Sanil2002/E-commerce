@@ -14,8 +14,45 @@ import Cart from './Components/Cart';
 import CheckoutSuccess from './Pages/Checkout';
 import Profile from './Pages/Profile';
 import Update from './Pages/Update';
+import { addProducts, initDB } from './Utilities/db';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const App = () => {
+
+
+
+  //................................................................
+
+
+  useEffect(() => {
+    const fetchAndStoreProducts = async () => {
+      const db = await initDB();
+      const cachedProducts = await db.getAll('products');
+
+      if (cachedProducts.length === 0) {
+        try {
+          const response = await axios.get('https://fakestoreapi.com/products');
+          const products = response.data.products;
+          console.log("app.tsx",products)
+          await addProducts(db, products); // Store fetched products in IndexedDB
+          console.log('Products stored in IndexedDB');
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      } else {
+        console.log('Using cached products from IndexedDB');
+        console.log(cachedProducts)
+      }
+    };
+
+    fetchAndStoreProducts();
+  }, []);
+
+
+  // ...............................................................
+
+
   return (
     <Shoppingcartprovider>
       <Navbar />

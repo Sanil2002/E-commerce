@@ -17,15 +17,20 @@ const Store: React.FC = () => {
   const [productCategory, setProductCategory] = useState<string>("");
   const [filteredData, setFilteredData] = useState<StoreItem[]>([]);
   const [search, setSearch] = useState<string>("");
+  const [loading,setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     axios.get('https://fakestoreapi.com/products')
-      .then(res => setStoreItems(res.data))
-      .catch(error => { alert('Cannot find the result: ' + error.message); });
-    if (productCategory === "") {
-      setFilteredData(storeItems);
-    }
-  }, [storeItems]);
+      .then(res => {
+        setStoreItems(res.data);
+        setFilteredData(res.data);
+        setLoading(false); // Set loading to false after data is fetched
+      })
+      .catch(error => {
+        alert('Cannot find the result: ' + error.message);
+        setLoading(false); // Set loading to false even if there's an error
+      });
+  }, []);
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const sortSelected: string = e.target.value;
@@ -37,6 +42,18 @@ const Store: React.FC = () => {
     setProductCategory(selectedCategory);
 
     setFilteredData(storeItems.filter(item => item.category === selectedCategory));
+  }
+
+  if (loading) {
+    return (
+    <div  className="min-w-screen min-h-screen flex items-center justify-center">
+    <div className=" flex justify-center items-center ">
+      <div className="absolute animate-spin rounded-full h-40 w-40 border-t-4 border-b-4 border-purple-500"></div>
+      <img src="https://www.svgrepo.com/show/509001/avatar-thinking-9.svg"  className="rounded-full h-28 w-28" />
+      </div>
+      </div>
+      // Loading...</div>;
+    )
   }
 
   return (

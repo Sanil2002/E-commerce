@@ -1,311 +1,3 @@
-// // import axios from "axios";
-// // import { useEffect, useState } from "react";
-// // import { useParams} from "react-router-dom";
-// // import { useShoppingcart } from "../Context/Shoppingcartcontext";
-
-// // // interface props{
-// // //   id: number
-// // //   name: string
-// // //   price: number
-
-// // // }
-
-// // const Singleproduct=()=>{
-// //     const [storeItems,setstoreItems]=useState({});
-// //     const { id } = useParams();
-// //     const {getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart} = useShoppingcart()
-// //     const quantity = getItemQuantity(id)
-// //     //console.log(id)
-// //     useEffect(() => {
-// //         axios.get(`https://fakestoreapi.com/products/${id}`)
-// //           .then(res => setstoreItems(res.data)
-// //         )
-          
-// //           .catch(error => { alert('Cannot find the result: '+ error.message);
-// //       });}, []);
-// //       console.log('storeeeee',storeItems);
-// //       // const handleAddToCart=()=>{
-// //       //       const quantity = getItemQuantity(id)
-
-// //       // }
-// //     return <div className="h-screen w-full lg:h-1/2 lg:w-1/2 xl:h-2/3 xl:w-2/3 2xl:h-3/4 2xl:w-3/4 bg-light-white flex justify-center items-center">
-// //        {/* <img src={storeItems.image} alt="" />
-// //             <h3>{storeItems.title}</h3>
-// //             <h4>{storeItems.price}</h4>
-// //             <p>{storeItems.description}</p>
-// //             <button className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300" >Add-to-cart</button> */}
-// //            <div className="grid h-screen bg-light-white lg:grid-cols-3 justify-center">
-// //   <div></div>
-// //   <div className="group border-black h-150 w-150 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-lg border bg-black shadow-md">
-// //     <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
-// //       <img className="peer absolute top-0 right-0 h-full w-full object-cover" src={storeItems.image} alt="product image" />
-// //       <img className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0" src={storeItems.image} alt="product image" />
-// //       <svg className="group-hover:animate-ping group-hover:opacity-30 peer-hover:opacity-0 pointer-events-none absolute inset-x-0 bottom-5 mx-auto text-3xl text-white transition-opacity" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M2 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v10a4 4 0 0 1-2.328 3.635a2.996 2.996 0 0 0-.55-.756l-8-8A3 3 0 0 0 14 17v7H6a4 4 0 0 1-4-4V10Zm14 19a1 1 0 0 0 1.8.6l2.7-3.6H25a1 1 0 0 0 .707-1.707l-8-8A1 1 0 0 0 16 17v12Z" /></svg>
-// //       <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span>
-// //     </a>
-// //     <div className="mt-4 px-5 pb-5">
-// //       <a href="#">
-// //         <h5 className="text-xl tracking-tight text-white">{storeItems.title}</h5>
-// //       </a>
-// //       <div className="mt-2 mb-5 flex items-center justify-between">
-// //         <p>
-// //           <span className="text-3xl font-bold text-white">{storeItems.price}</span>
-// //           <span className="text-sm text-white line-through">$699</span>
-// //         </p>
-// //       </div>
-// //         <p className="line-clamp-6 mb-3 cursor-pointer overflow-hidden leading-relaxed text-white">{storeItems.description}</p>
-// //         {quantity === 0 ?
-// //         (<button onClick={() => increaseCartQuantity(id)} className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300">
-// //         <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-// //           <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-// //         </svg>
-// //         Add to cart</button>):(<div className="d-flex text-white align-items-center flex-column"
-// //          style={{gap: "5rem"}}>
-// //           <div className="d-flex text-white align-items-center justify-content-center"
-// //            style={{gap: "5rem"}}>
-// //             <button onClick={() => increaseCartQuantity(id)}>+</button>
-// //             <div>
-// //             <span className="fs-3">{quantity}</span>In-cart
-// //             </div>
-// //             <button onClick={() => decreaseCartQuantity(id)}>-</button>
-// //             </div><button onClick={() => removeFromCart(id)} className="text-white bg-red-700 size-27">Remove</button>
-// //          </div>)
-// //         }
-// //     </div>
-// //   </div>
-// // </div>
-
-// //     </div>
-// // }
-// // export default Singleproduct;
-
-
-// import axios from "axios";
-// import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import { useShoppingcart } from "../Context/Shoppingcartcontext";
-
-// interface Product {
-//   id: number;
-//   name: string;
-//   price: number;
-//   image: string;
-//   title: string;
-//   description: string;
-// }
-
-// const Singleproduct = () => {
-//   const [storeItems, setStoreItems] = useState<Product | null>(null);
-//   const { id } = useParams<{ id: string }>();
-//   const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingcart();
-
-//   const productId = Number(id);
-
-//   useEffect(() => {
-//     if (isNaN(productId)) {
-//       console.error('Invalid product id:', id);
-//       return;
-//     }
-
-//     axios.get(`https://fakestoreapi.com/products/${productId}`)
-//       .then(res => {
-//         setStoreItems(res.data);
-//       })
-//       .catch(error => {
-//         console.error('Error fetching product:', error);
-//         alert('Cannot find the result: ' + error.message);
-//       });
-//   }, []);
-
-//   if (!storeItems) {
-//     return <div>Loading...</div>;
-//   }
-
-//   const quantity = getItemQuantity(productId);
-
-//   return (
-//     <div className="h-screen w-full lg:h-1/2 lg:w-1/2 xl:h-2/3 xl:w-2/3 2xl:h-3/4 2xl:w-3/4 bg-light-white flex justify-center items-center">
-//       <div className="grid h-screen bg-light-white lg:grid-cols-3 justify-center">
-//         <div></div>
-//         <div className="group border-black h-150 w-150 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-lg border bg-black shadow-md">
-//           <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
-//             <img className="peer absolute top-0 right-0 h-full w-full object-cover" src={storeItems.image} alt="product image" />
-//             <img className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0" src={storeItems.image} alt="product image" />
-//             <svg className="group-hover:animate-ping group-hover:opacity-30 peer-hover:opacity-0 pointer-events-none absolute inset-x-0 bottom-5 mx-auto text-3xl text-white transition-opacity" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M2 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v10a4 4 0 0 1-2.328 3.635a2.996 2.996 0 0 0-.55-.756l-8-8A3 3 0 0 0 14 17v7H6a4 4 0 0 1-4-4V10Zm14 19a1 1 0 0 0 1.8.6l2.7-3.6H25a1 1 0 0 0 .707-1.707l-8-8A1 1 0 0 0 16 17v12Z" /></svg>
-//             <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span>
-//           </a>
-//           <div className="mt-4 px-5 pb-5">
-//             <a href="#">
-//               <h5 className="text-xl tracking-tight text-white">{storeItems.title}</h5>
-//             </a>
-//             <div className="mt-2 mb-5 flex items-center justify-between">
-//               <p>
-//                 <span className="text-3xl font-bold text-white">${storeItems.price}</span>
-//                 <span className="text-sm text-white line-through">$699</span>
-//               </p>
-//             </div>
-//             <p className="line-clamp-6 mb-3 cursor-pointer overflow-hidden leading-relaxed text-white">{storeItems.description}</p>
-//             {quantity === 0 ? (
-//               <button 
-//                 onClick={() => increaseCartQuantity(productId)} 
-//                 className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300"
-//               >
-//                 <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-//                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-//                 </svg>
-//                 Add to cart
-//               </button>
-//             ) : (
-//               <div className="flex flex-col items-center text-white" style={{ gap: "5rem" }}>
-//                 <div className="flex items-center justify-center" style={{ gap: "5rem" }}>
-//                   <button 
-//                     onClick={() => increaseCartQuantity(productId)} 
-//                     className="text-white bg-green-700 px-2"
-//                   >
-//                     +
-//                   </button>
-//                   <div>
-//                     <span className="fs-3">{quantity}</span> In cart
-//                   </div>
-//                   <button 
-//                     onClick={() => decreaseCartQuantity(productId)} 
-//                     className="text-white bg-yellow-700 px-2"
-//                   >
-//                     -
-//                   </button>
-//                 </div>
-//                 <button 
-//                   onClick={() => removeFromCart(productId)} 
-//                   className="text-white bg-red-700 px-3 py-1"
-//                 >
-//                   Remove
-//                 </button>
-//               </div>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Singleproduct;
-
-// src/Pages/Singleproduct.tsx
-
-
-
-
-// import axios from "axios";
-// import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import { useShoppingcart } from "../Context/Shoppingcartcontext";
-
-// interface Product {
-//   id: number;
-//   name: string;
-//   price: number;
-//   image: string;
-//   title: string;
-//   description: string;
-// }
-
-// const Singleproduct = () => {
-//   const [storeItems, setStoreItems] = useState<Product | null>(null);
-//   const { id } = useParams<{ id: string }>();
-//   const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingcart();
-  
-//   const productId = Number(id);
-
-//   useEffect(() => {
-//     if (isNaN(productId)) {
-//       console.error('Invalid product id:', id);
-//       return;
-//     }
-
-//     axios.get(`https://fakestoreapi.com/products/${productId}`)
-//       .then(res => {
-//         setStoreItems(res.data);
-//       })
-//       .catch(error => {
-//         console.error('Error fetching product:', error);
-//         alert('Cannot find the result: ' + error.message);
-//       });
-//   }, [productId]);
-
-//   if (!storeItems) {
-//     return <div>Loading...</div>;
-//   }
-
-//   const quantity = getItemQuantity(productId);
-
-//   return (
-//     <div className="h-screen w-full lg:h-1/2 lg:w-1/2 xl:h-2/3 xl:w-2/3 2xl:h-3/4 2xl:w-3/4 bg-light-white flex justify-center items-center">
-//       <div className="grid h-screen bg-light-white lg:grid-cols-3 justify-center">
-//         <div></div>
-//         <div className="group border-black h-150 w-150 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-lg border bg-black shadow-md">
-//           <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
-//             <img className="peer absolute top-0 right-0 h-full w-full object-cover" src={storeItems.image} alt="product image" />
-//             <img className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0" src={storeItems.image} alt="product image" />
-//             <svg className="group-hover:animate-ping group-hover:opacity-30 peer-hover:opacity-0 pointer-events-none absolute inset-x-0 bottom-5 mx-auto text-3xl text-white transition-opacity" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M2 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v10a4 4 0 0 1-2.328 3.635a2.996 2.996 0 0 0-.55-.756l-8-8A3 3 0 0 0 14 17v7H6a4 4 0 0 1-4-4V10Zm14 19a1 1 0 0 0 1.8.6l2.7-3.6H25a1 1 0 0 0 .707-1.707l-8-8A1 1 0 0 0 16 17v12Z" /></svg>
-//             <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span>
-//           </a>
-//           <div className="mt-4 px-5 pb-5">
-//             <a href="#">
-//               <h5 className="text-xl tracking-tight text-white">{storeItems.title}</h5>
-//             </a>
-//             <div className="mt-2 mb-5 flex items-center justify-between">
-//               <p>
-//                 <span className="text-3xl font-bold text-white">${storeItems.price}</span>
-//                 <span className="text-sm text-white line-through">$699</span>
-//               </p>
-//             </div>
-//             <p className="line-clamp-6 mb-3 cursor-pointer overflow-hidden leading-relaxed text-white">{storeItems.description}</p>
-//             {quantity === 0 ? (
-//               <button 
-//                 onClick={() => increaseCartQuantity(productId, storeItems.name, storeItems.image)} 
-//                 className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300"
-//               >
-//                 <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-//                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-//                 </svg>
-//                 Add to cart
-//               </button>
-//             ) : (
-//               <div className="flex flex-col items-center text-white" style={{ gap: "5rem" }}>
-//                 <div className="flex items-center justify-center" style={{ gap: "5rem" }}>
-//                   <button 
-//                     onClick={() => increaseCartQuantity(productId, storeItems.name, storeItems.image)} 
-//                     className="text-white bg-green-700 px-2"
-//                   >
-//                     +
-//                   </button>
-//                   <div>
-//                     <span className="fs-3">{quantity}</span> In cart
-//                   </div>
-//                   <button 
-//                     onClick={() => decreaseCartQuantity(productId)} 
-//                     className="text-white bg-yellow-700 px-2"
-//                   >
-//                     -
-//                   </button>
-//                 </div>
-//                 <button 
-//                   onClick={() => removeFromCart(productId)} 
-//                   className="text-white bg-red-700 px-3 py-1"
-//                 >
-//                   Remove
-//                 </button>
-//               </div>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Singleproduct;import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useShoppingcart } from '../Context/Shoppingcartcontext';
@@ -354,6 +46,12 @@ const SingleProduct: React.FC = () => {
     }
   };
 
+  const handleRemoveToCart = () => {
+    if (product) {
+      decreaseCartQuantity(product.id);
+    }
+  };
+
   const handleRemoveProduct = () => {
     if (product) {
       axios.delete(`https://fakestoreapi.com/products/${product.id}`)
@@ -381,7 +79,15 @@ const SingleProduct: React.FC = () => {
   const [reviews, setReviews] = useState<{ rating: number; comment: string }[]>([]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+    <div  className="min-w-screen min-h-screen flex items-center justify-center">
+    <div className=" flex justify-center items-center ">
+      <div className="absolute animate-spin rounded-full h-40 w-40 border-t-4 border-b-4 border-purple-500"></div>
+      <img src="https://www.svgrepo.com/show/509001/avatar-thinking-9.svg"  className="rounded-full h-28 w-28" />
+      </div>
+      </div>
+      // Loading...</div>;
+    )
   }
 
   const isUserAuthorized = user?.email === 'sanilm4637@gmail.com';
@@ -411,9 +117,9 @@ const SingleProduct: React.FC = () => {
             )}
           </div>
           <div className="mb-4">
-            <button onClick={decreaseCartQuantity} className="px-4 py-2 bg-gray-300 rounded-l">-</button>
+            <button onClick={handleRemoveToCart} className="px-4 py-2 bg-gray-300 rounded-l">-</button>
             <span className="px-4 py-2 border-t border-b">{getItemQuantity(product.id)}</span>
-            <button onClick={increaseCartQuantity} className="px-4 py-2 bg-gray-300 rounded-r">+</button>
+            <button onClick={handleAddToCart} className="px-4 py-2 bg-gray-300 rounded-r">+</button>
           </div>
           <div className="flex flex-row gap-14">
             <button onClick={handleAddToCart} className="bg-yellow-500 text-white px-4 py-2  hover:bg-black hover:-translate-y-2 duration-300 rounded">Add to Cart</button>
