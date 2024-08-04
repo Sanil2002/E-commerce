@@ -30,10 +30,10 @@ const App = () => {
       const db = await initDB();
       const cachedProducts = await db.getAll('products');
 
-      if (cachedProducts.length === 0) {
+      if (true) {
         try {
           const response = await axios.get('https://fakestoreapi.com/products');
-          const products = response.data.products;
+          const products = response.data;
           console.log("app.tsx",products)
           await addProducts(db, products); // Store fetched products in IndexedDB
           console.log('Products stored in IndexedDB');

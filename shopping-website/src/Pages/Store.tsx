@@ -14,7 +14,7 @@ interface StoreItem {
 const Store: React.FC = () => {
   const [storeItems, setStoreItems] = useState<StoreItem[]>([]);
   const [sort, setSort] = useState<string>("");
-  const [productCategory, setProductCategory] = useState<string>("");
+  const [productCategory, setProductCategory] = useState<string>('');
   const [filteredData, setFilteredData] = useState<StoreItem[]>([]);
   const [search, setSearch] = useState<string>("");
   const [loading,setLoading] = useState<boolean>(true);
@@ -40,8 +40,15 @@ const Store: React.FC = () => {
   const handleFilteredChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedCategory = e.target.value;
     setProductCategory(selectedCategory);
-
-    setFilteredData(storeItems.filter(item => item.category === selectedCategory));
+    console.log(storeItems);
+    
+    console.log(selectedCategory);
+    
+    if(selectedCategory==="all"){
+      setFilteredData(storeItems)
+    }else{ 
+      setFilteredData(storeItems.filter(item => item.category === selectedCategory));
+    }
   }
 
   if (loading) {
@@ -58,16 +65,16 @@ const Store: React.FC = () => {
 
   return (
     <div>
-      <div className="relative flex justify-center my-6">
+      <div className="relative gap-5 flex justify-center my-6">
         <input
           onChange={(e) => setSearch(e.target.value)}
           type="text"
           className="text-xl w-full max-w-lg pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-300"
           placeholder="Search..."
         />
-        <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        {/* <svg className="absolute top-1/2 left-12 -translate-y-1/2 w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
+        </svg> */}
       </div>
       <div>
       <div className="text-center">
@@ -83,7 +90,7 @@ const Store: React.FC = () => {
           </div>
           <div className="w-full md:w-1/2 xl:w-1/3">
             <select value={productCategory} onChange={handleFilteredChange} className="w-full bg-gray-100 border border-gray-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-300">
-              <option value="">Category</option>
+              <option value="all">Category</option>
               <option value="men's clothing">Men</option>
               <option value="women's clothing">Women</option>
               <option value="electronics">Electronics</option>
@@ -114,3 +121,7 @@ const Store: React.FC = () => {
 }
 
 export default Store;
+
+
+
+

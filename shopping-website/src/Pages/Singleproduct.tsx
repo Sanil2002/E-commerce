@@ -4,6 +4,7 @@ import { useShoppingcart } from '../Context/Shoppingcartcontext';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect,useState } from "react";
 import UpdateModal from "../Components/Update-Modal";
+import { initDB, getAllProducts } from '../Utilities/db';
 
 interface ProductDetails {
   id: number;
@@ -26,14 +27,38 @@ const SingleProduct: React.FC = () => {
   const navigate = useNavigate();
   const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } = useShoppingcart();
 
+  // useEffect(() => {
+  //   axios.get(`https://fakestoreapi.com/products/${id}`)
+  //     .then(res => setProduct(res.data))
+  //     .catch(error => {
+  //       console.error('Error fetching product:', error);
+  //       alert('Cannot find the result: ' + error.message);
+  //     });
+  // }, [id]);
+
   useEffect(() => {
-    axios.get(`https://fakestoreapi.com/products/${id}`)
-      .then(res => setProduct(res.data))
-      .catch(error => {
-        console.error('Error fetching product:', error);
-        alert('Cannot find the result: ' + error.message);
-      });
+    const fetchProduct = async () => {
+      try {
+        // Fetch from IndexedDB
+        const db = await initDB();
+        const products = await getAllProducts(db);
+        const foundProduct = products.find((p: any) => p.id === parseInt(id!));
+
+        if (foundProduct) {
+          setProduct(foundProduct);
+        } else {
+          // Handle product not found
+          alert('Product not found');
+        }
+      } catch (error) {
+        alert('Failed to fetch product');
+      }
+    };
+
+    fetchProduct();
   }, [id]);
+
+
 
   const handleUpdateProduct = (updatedProduct: ProductDetails) => {
     setProduct(updatedProduct);
@@ -95,7 +120,7 @@ const SingleProduct: React.FC = () => {
   return (
     <div className="p-6 bg-white shadow-md rounded-md">
       <div className="flex">
-        <img className="w-1/2 rounded-md" src={product.image} alt={product.title} />
+        <img className="w-1/2 h-1/2 rounded-md" src={product.image} alt={product.title} />
         <div className="ml-6 w-1/2">
           <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
           <p className="text-xl font-semibold text-gray-700 mb-2">${product.price}</p>
@@ -191,7 +216,6 @@ const SingleProduct: React.FC = () => {
 };
 
 export default SingleProduct;
-
 
 
 

@@ -7,7 +7,7 @@ const STORE_NAME = 'products';
 export const initDB = async () => {
   const db = await openDB(DB_NAME, 1, {
     upgrade(db) {
-      db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+      db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
     },
   });
   return db;

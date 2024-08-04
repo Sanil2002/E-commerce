@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Product from "./Products";
 import Modal from "../Components/Modal";
+import { initDB, getAllProducts } from '../Utilities/db';
 
 interface StoreItem {
   id: number;
@@ -11,7 +12,6 @@ interface StoreItem {
   description: string;
   image: string;
 }
-
 const Update: React.FC = () => {
   const [storeItems, setStoreItems] = useState<StoreItem[]>([]);
   const [productCategory, setProductCategory] = useState<string>("");
@@ -19,14 +19,26 @@ const Update: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // useEffect(() => {
+  //   axios.get('https://fakestoreapi.com/products')
+  //     .then(res => setStoreItems(res.data))
+  //     .catch(error => { alert('Cannot find the result: ' + error.message); });
+  //   if (productCategory === "") {
+  //     setFilteredData(storeItems);
+  //   }
+  // }, [storeItems]);
+
+
   useEffect(() => {
-    axios.get('https://fakestoreapi.com/products')
-      .then(res => setStoreItems(res.data))
-      .catch(error => { alert('Cannot find the result: ' + error.message); });
-    if (productCategory === "") {
-      setFilteredData(storeItems);
-    }
-  }, [storeItems]);
+    const fetchProducts = async () => {
+      const db = await initDB();
+      const productsFromDB = await getAllProducts(db);
+      setStoreItems(productsFromDB);
+      setFilteredData(productsFromDB);
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleAddNewProduct = () => {
     setIsModalOpen(true);

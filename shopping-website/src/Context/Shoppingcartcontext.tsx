@@ -91,9 +91,10 @@
 
 // src/Context/Shoppingcartcontext.tsx
 
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import Cart from "../Components/Cart";
 import axios from "axios"; // Ensure axios is installed
+import { useAuth0 } from "@auth0/auth0-react";
 
 type ShoppingcartproviderProps = {
     children: ReactNode
@@ -134,9 +135,40 @@ export function Shoppingcartprovider({ children }: ShoppingcartproviderProps) {
     const [cartItems, setCartItems] = useState<(cartItem & Product)[]>([]);
 
     const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0);
-
+    const {user} = useAuth0();
     const openCart = () => setIsOpen(true);
     const closeCart = () => setIsOpen(false);
+
+
+    
+
+    useEffect(() => {
+        if (user?.email) {
+          const storedCarts = localStorage.getItem('carts');
+          const carts = storedCarts ? JSON.parse(storedCarts) : {};
+          setCartItems(carts[user.email] || []);
+        }
+      }, [user?.email]);
+
+
+
+
+
+
+
+    //Update Local storage whenever the cart items change
+    useEffect(() => {
+        if(user?.email) {
+            const storedCarts = localStorage.getItem('carts');
+            const carts = storedCarts ? JSON.parse(storedCarts) : {};
+            carts[user.email]=cartItems; //Update the user's cart
+            localStorage.setItem('carts',JSON.stringify(carts)); //save all carts
+
+        }
+    }, [cartItems,user?.email]);
+
+
+
 
     function getItemQuantity(id: number) {
         return cartItems.find(item => item.id === id)?.quantity || 0;
